@@ -20,7 +20,7 @@ def HideMe():
     global AllProxy
     HimeM = []
     r = requests.get(
-        f"https://hidemy.name/ru/proxy-list/?maxtime=500type=s#list", headers=faceH()
+        f"https://hidemy.name/ru/proxy-list/?maxtime=300&type=s#list", headers=faceH()
     )
     soup = BeautifulSoup(r.text, "html.parser")
     while 1:
@@ -51,9 +51,9 @@ def HideMe():
                         headers=faceH(),
                     )
                     soup = BeautifulSoup(r.text, "html.parser")
-            if vv_work == 0:
-                AllProxy = HimeM
-                break
+        if vv_work == 0:
+            AllProxy = HimeM
+            break
 
 
 def FoxTools():
