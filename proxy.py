@@ -24,7 +24,6 @@ def HideMe():
     )
     soup = BeautifulSoup(r.text, "html.parser")
     while 1:
-        vv_work = 0
         for date in soup.find_all("div", class_="table_block"):
             for tables in date.find_all("tbody"):
                 for tresh in tables.find_all("tr"):
@@ -48,13 +47,13 @@ def HideMe():
                 page_next = str(next_page).split(";start=")[1].split("#list")[0]
                 if next_page != "":
                     r = requests.get(
-                        f"https://hidemy.name/ru/proxy-list/?maxtime=300&type=s&start={page_next}#list",
+                        f"https://hidemy.name/ru/proxy-list/?maxtime=500&type=s&start={page_next}#list",
                         headers=faceH(),
                     )
                     soup = BeautifulSoup(r.text, "html.parser")
-        if vv_work == 0:
-            AllProxy = HimeM
-            break
+            if vv_work == 0:
+                AllProxy = HimeM
+                break
 
 
 def FoxTools():
