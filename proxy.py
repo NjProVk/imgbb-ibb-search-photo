@@ -18,11 +18,13 @@ ValidProxy = []
 
 def HideMe():
     global AllProxy
+    HimeM = []
     r = requests.get(
         f"https://hidemy.name/ru/proxy-list/?maxtime=500type=s#list", headers=faceH()
     )
     soup = BeautifulSoup(r.text, "html.parser")
     while 1:
+        vv_work = 0
         for date in soup.find_all("div", class_="table_block"):
             for tables in date.find_all("tbody"):
                 for tresh in tables.find_all("tr"):
@@ -35,10 +37,8 @@ def HideMe():
                             try:
                                 int(prod.text)
                                 newer = newer + prod.text
-                                if newer in AllProxy:
-                                    pass
-                                else:
-                                    AllProxy.append(newer)
+                                if newer not in HimeM:
+                                    HimeM.append(newer)
                             except:
                                 pass
         for nextslite in soup.find_all("div", class_="pagination"):
@@ -52,6 +52,9 @@ def HideMe():
                         headers=faceH(),
                     )
                     soup = BeautifulSoup(r.text, "html.parser")
+        if vv_work == 0:
+            AllProxy = HimeM
+            break
 
 
 def FoxTools():
