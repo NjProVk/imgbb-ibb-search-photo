@@ -66,7 +66,7 @@ if __name__ == '__main__':
                         ValidProxy.remove(prx_sender[1])
                 all_thread -= 1
 
-            threading.Thread(target=Start_Bot()).start()
+            threading.Thread(target=Start_Bot).start()
 
             while all_thread >= max_thread:
                 if all_thread < max_thread:
