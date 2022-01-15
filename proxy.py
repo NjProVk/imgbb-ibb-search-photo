@@ -18,9 +18,8 @@ ValidProxy = []
 
 def HideMe():
     global AllProxy
-    hideM = []
     r = requests.get(
-        f"https://hidemy.name/ru/proxy-list/?maxtime=300type=s#list", headers=faceH()
+        f"https://hidemy.name/ru/proxy-list/?maxtime=500type=s#list", headers=faceH()
     )
     soup = BeautifulSoup(r.text, "html.parser")
     while 1:
@@ -36,10 +35,10 @@ def HideMe():
                             try:
                                 int(prod.text)
                                 newer = newer + prod.text
-                                if newer in hideM:
+                                if newer in AllProxy:
                                     pass
                                 else:
-                                    hideM.append(newer)
+                                    AllProxy.append(newer)
                             except:
                                 pass
         for nextslite in soup.find_all("div", class_="pagination"):
@@ -53,14 +52,10 @@ def HideMe():
                         headers=faceH(),
                     )
                     soup = BeautifulSoup(r.text, "html.parser")
-            if vv_work == 0:
-                AllProxy = hideM
-                return 'End!'
 
 
 def FoxTools():
     global AllProxy
-    FoxProxy = []
     try:
         r = requests.get("http://api.foxtools.ru/v2/Proxy", headers=faceH()).json()
 
@@ -73,10 +68,9 @@ def FoxTools():
                             or str(items["anonymity"]) != "Unknown"
                             and str(items["anonymity"]) != "Low"
                     ):
-                        FoxProxy.append(good_ips)
+                        AllProxy.append(good_ips)
     except:
         pass
-    AllProxy = FoxProxy
 
 
 HideMe()
